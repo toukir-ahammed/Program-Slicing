@@ -7,10 +7,56 @@ import com.scitools.understand.Understand;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 public class AnalyzeUnderstand {
 	public AnalyzeUnderstand() {
+	}
+
+	public static CFG reloadCFG(String CFGFile) {
+		List<String> lines = FileToLines.fileToLines(CFGFile, 1);
+		CFG cfg = null;
+		for (String line : lines) {
+			String[] splits = line.split("\t", -1);
+			String cfgString = splits[7];
+			cfg = new CFG(cfgString);
+		}
+		return cfg;
+	}
+
+	public static Collection<VariableUsage> reloadVariableUsage(String variableUsageFile) {
+
+		List<String> lines = FileToLines.fileToLines(variableUsageFile, 1);
+		HashMap<Integer, VariableUsage> variableUsages = new HashMap<>();
+
+		for (String line : lines) {
+			String[] splits = line.split("\t");
+			int nodeID = Integer.parseInt(splits[0]);
+
+			if (variableUsages.get(Integer.valueOf(nodeID)) == null) {
+				variableUsages.put(Integer.valueOf(nodeID), new VariableUsage(splits[1]));
+			}
+
+			VariableUsage vu = variableUsages.get(Integer.valueOf(nodeID));
+			vu.setNodeID(nodeID);
+			// vu.setMethodID(methodID);
+			String variableType = splits[3];
+			vu.setVariableType(variableType);
+
+			int refLineNum = Integer.parseInt(splits[4]);
+			String usageType = splits[5];
+			if (usageType.equals("define")) {
+				vu.getDefLines().add(Integer.valueOf(refLineNum));
+			} else if (usageType.equals("set")) {
+				vu.getSetLines().add(Integer.valueOf(refLineNum));
+			} else if (usageType.equals("use")) {
+				vu.getUseLines().add(Integer.valueOf(refLineNum));
+			} else
+				System.err.println("unknown usage type for the variable info:" + line);
+		}
+		return variableUsages.values();
 	}
 
 	public static void extractCFG(String filename, String saveFile) throws Exception {

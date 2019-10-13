@@ -31,35 +31,24 @@ public class ExecCommand {
 		return result.toString();
 	}
 
-/*	public Pair<String, String> execOneThread(String[] commands, String workingpath) {
-		Pair<String, String> result = null;
-		try {
-			java.io.File dir = new java.io.File(workingpath);
-
-			Process process = Runtime.getRuntime().exec(commands, null, dir);
-
-			ReadStream s1 = new ReadStream("stdin", process.getInputStream());
-			ReadStream s2 = new ReadStream("stderr", process.getErrorStream());
-			s1.start();
-			s2.start();
-			if (!process.waitFor(2L, java.util.concurrent.TimeUnit.MINUTES)) {
-				result = new Pair("Timeout", "Timeout");
-				s1.end();
-				s2.end();
-				process.destroy();
-			} else {
-				result = new Pair("OK", "OK");
-
-			}
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-			System.err.println("Error:" + e.getClass());
-			return result;
-		}
-		ReadStream s2;
-		ReadStream s1;
-		return result;
-	} */
+	/*
+	 * public Pair<String, String> execOneThread(String[] commands, String
+	 * workingpath) { Pair<String, String> result = null; try { java.io.File dir =
+	 * new java.io.File(workingpath);
+	 * 
+	 * Process process = Runtime.getRuntime().exec(commands, null, dir);
+	 * 
+	 * ReadStream s1 = new ReadStream("stdin", process.getInputStream()); ReadStream
+	 * s2 = new ReadStream("stderr", process.getErrorStream()); s1.start();
+	 * s2.start(); if (!process.waitFor(2L, java.util.concurrent.TimeUnit.MINUTES))
+	 * { result = new Pair("Timeout", "Timeout"); s1.end(); s2.end();
+	 * process.destroy(); } else { result = new Pair("OK", "OK");
+	 * 
+	 * }
+	 * 
+	 * } catch (Exception e) {
+	 * 
+	 * e.printStackTrace(); System.err.println("Error:" + e.getClass()); return
+	 * result; } ReadStream s2; ReadStream s1; return result; }
+	 */
 }
