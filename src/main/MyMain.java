@@ -22,8 +22,8 @@ import understand.WriteLinesToFile;
 public class MyMain {
 	static {
 		try {
-			System.load("C:\\Program Files\\SciTools\\bin\\pc-win64\\Java\\Understand.dll");
-			//System.loadLibrary("Understand");
+			// System.load("C:\\Program Files\\SciTools\\bin\\pc-win64\\Java\\Understand.dll");
+			System.loadLibrary("/lib/Understand");
 			System.out.println("Native code library has been loaded successfully.\n");
 		} catch (UnsatisfiedLinkError e) {
 			System.err.println("Native code library failed to load.\n" + e);
