@@ -8,7 +8,7 @@ public class UnderstandJavaSourceFiles {
 
 	public static void createAnalysisDB(File sourceFile, String analysisDBPath) throws Exception {
 		String formattedProjectDBPath = new File(analysisDBPath).getAbsolutePath();
-
+		formattedProjectDBPath = "\"" + formattedProjectDBPath+ "\"";
 		System.out.println("Begin to analyze by understand tool");
 
 		StringBuffer commandBuffer = new StringBuffer("und create -db ");
@@ -19,6 +19,7 @@ public class UnderstandJavaSourceFiles {
 		command.execOneThread(commandBuffer.toString(), ".");
 
 		String formattedSourceFileName = sourceFile.getAbsolutePath();
+		formattedSourceFileName = "\"" + formattedSourceFileName + "\"";
 		commandBuffer = new StringBuffer("und -db ");
 		commandBuffer.append(formattedProjectDBPath + " ");
 		commandBuffer.append("add ");
