@@ -15,13 +15,16 @@ public class AnalyzeUnderstand {
 	public AnalyzeUnderstand() {
 	}
 
-	public static CFG reloadCFG(String CFGFile) {
+	public static CFG reloadCFG(String CFGFile, String methodName) {
 		List<String> lines = FileToLines.fileToLines(CFGFile, 1);
 		CFG cfg = null;
 		for (String line : lines) {
 			String[] splits = line.split("\t", -1);
 			String cfgString = splits[7];
-			cfg = new CFG(cfgString);
+			if (splits[1].equals(methodName)) {
+				cfg = new CFG(cfgString);
+			}
+				
 		}
 		return cfg;
 	}
@@ -34,6 +37,7 @@ public class AnalyzeUnderstand {
 		for (String line : lines) {
 			String[] splits = line.split("\t");
 			int nodeID = Integer.parseInt(splits[0]);
+			String methodName = splits[6];
 
 			if (variableUsages.get(Integer.valueOf(nodeID)) == null) {
 				variableUsages.put(Integer.valueOf(nodeID), new VariableUsage(splits[1]));
@@ -42,6 +46,7 @@ public class AnalyzeUnderstand {
 			VariableUsage vu = variableUsages.get(Integer.valueOf(nodeID));
 			vu.setNodeID(nodeID);
 			// vu.setMethodID(methodID);
+			vu.setMethodName(methodName);
 			String variableType = splits[3];
 			vu.setVariableType(variableType);
 

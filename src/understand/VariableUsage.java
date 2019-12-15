@@ -6,6 +6,7 @@ public class VariableUsage {
 	private int nodeID = -1;
 	private String variableType = "";
 	private int methodID = -1;
+	private String methodName = "";
 
 	public String name;
 	private HashSet<Integer> defineLines = new HashSet<Integer>();
@@ -108,6 +109,14 @@ public class VariableUsage {
 
 	public void setMethodID(int methodID) {
 		this.methodID = methodID;
+	}
+	
+	public String getMethodName() {
+		return methodName;
+	}
+
+	public void setMethodName(String methodName) {
+		this.methodName = methodName;
 	}
 
 	public int hashCode() {

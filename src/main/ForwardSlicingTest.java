@@ -83,7 +83,7 @@ public class ForwardSlicingTest {
 			
 			List<String> slicedLines = new ArrayList<String>();
 
-			CFG cfg = AnalyzeUnderstand.reloadCFG(cfgFile);
+			CFG cfg = AnalyzeUnderstand.reloadCFG(cfgFile,"methodname");
 			Collection<VariableUsage> variableUsages = AnalyzeUnderstand.reloadVariableUsage(useFile);
 			Slicing forwSlicing = new FSlicing(cfg, variableUsages);
 			

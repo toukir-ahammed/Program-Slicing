@@ -81,12 +81,19 @@ public class MyMain {
 			List<String> lines = FileToLines.fileToLines(sourceFile.getAbsolutePath());
 			
 			List<String> slicedLines = new ArrayList<String>();
-
-			CFG cfg = AnalyzeUnderstand.reloadCFG(cfgFile);
 			Collection<VariableUsage> variableUsages = AnalyzeUnderstand.reloadVariableUsage(useFile);
+			
+			String methodName = null;
+			for (VariableUsage variableUsage : variableUsages) {
+				if (variableUsage.isRelevantLine(18)) {
+					methodName = variableUsage.getMethodName();
+				}
+			}
+			CFG cfg = AnalyzeUnderstand.reloadCFG(cfgFile, methodName);
+			
 			Slicing backwardSlicing = new MySlicing(cfg, variableUsages);
 			
-			HashSet<CFGNode> cfgnodes = backwardSlicing.getSlicedNode(11);
+			HashSet<CFGNode> cfgnodes = backwardSlicing.getSlicedNode(18);
 
 			for (Iterator<CFGNode> iterator2 = cfgnodes.iterator(); iterator2.hasNext();) {
 				CFGNode cfgNode = (CFGNode) iterator2.next();
