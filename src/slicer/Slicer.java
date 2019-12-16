@@ -25,16 +25,16 @@ import understand.VariableUsage;
 
 public class Slicer {
 	
-	static {
-		try {
-			// System.load("C:\\Program Files\\SciTools\\bin\\pc-win64\\Java\\Understand.dll");
-			System.loadLibrary("/lib/Understand");
-			System.out.println("Native code library has been loaded successfully.\n");
-		} catch (UnsatisfiedLinkError e) {
-			System.err.println("Native code library failed to load.\n" + e);
-			System.exit(1);
-		}
-	}
+//	static {
+//		try {
+//			// System.load("C:\\Program Files\\SciTools\\bin\\pc-win64\\Java\\Understand.dll");
+//			System.loadLibrary("/lib/Understand");
+//			System.out.println("Native code library has been loaded successfully.\n");
+//		} catch (UnsatisfiedLinkError e) {
+//			System.err.println("Native code library failed to load.\n" + e);
+//			System.exit(1);
+//		}
+//	}
 	// filePath is absolute path
 	private List<Integer> getSlice(String filePath, Criterion criterion, String type) throws Exception {
 		File sourceFile = new File(filePath);
