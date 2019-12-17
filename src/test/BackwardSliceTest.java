@@ -15,14 +15,14 @@ public class BackwardSliceTest {
 		String filePath = "C:\\Users\\Toukir Ahammed\\eclipse-workspace\\SamplePrograms\\src\\Main.java";
 		HashSet<String> variableset = new HashSet<>();
 		variableset.add("product");
-		Criterion criterion = new Criterion(18, variableset);
+		Criterion criterion = new Criterion(20, variableset);
 		try {
 			List<Integer> slicedLines = slicer.getBackwardSlice(filePath, criterion);
 			
 			System.out.println("Sliced Lines are:");
 			
 			for (Integer integer : slicedLines) {
-				System.out.println("Satement: " + integer);
+				System.out.println("Statement: " + integer);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -11,6 +11,3 @@ public class Test{
 		System.err.println(product);		
 	}
 }
-
-// line selection
-// OOP object
